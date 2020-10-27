@@ -17,6 +17,7 @@
     - `routes.py`
     **New Files for chicodes_blog_app**
     - `forms.py`
+    - `models.py`
 
 - `app.py`
 - `config.py`
@@ -28,3 +29,4 @@
 - config.py
 - .env(omitted from github for security)
 - forms.py
+- models.py
