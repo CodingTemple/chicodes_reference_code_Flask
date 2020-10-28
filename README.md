@@ -22,11 +22,9 @@
 - `app.py`
 - `config.py`
 
-## Files changed so far:
+## Files changed today:
 - routes.py
 - __init__.py
-- register.html
-- config.py
 - .env(omitted from github for security)
 - forms.py
 - models.py
