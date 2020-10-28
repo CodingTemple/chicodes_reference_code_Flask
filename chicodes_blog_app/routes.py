@@ -2,7 +2,7 @@
 from chicodes_blog_app import app, db
 
 # Import specific packages from flask
-from flask import render_template,request
+from flask import render_template,request, redirect, url_for
 
 # Import Our Form(s)
 from chicodes_blog_app.forms import UserInfoForm, LoginForm
@@ -64,7 +64,8 @@ def login():
         if logged_user and check_password_hash(logged_user.password, password):
             login_user(logged_user)
             # TODO Redirected user
+            return redirect(url_for('home'))
         else:
             # TODO Redirect User to login route
-            return 'Not Logged In'
+            return redirect(url_for('login'))
     return render_template('login.html', login_form = form)
