@@ -28,5 +28,4 @@
 - __init__.py
 - .env(omitted from github for security)
 - forms.py(login form)
-- models.py
 - nav.html

@@ -5,7 +5,7 @@ from chicodes_blog_app import app, db
 from flask import render_template,request, redirect, url_for
 
 # Import Our Form(s)
-from chicodes_blog_app.forms import UserInfoForm, LoginForm
+from chicodes_blog_app.forms import UserInfoForm, LoginForm, PostForm
 
 # Import of Our Model(s) for the Database
 from chicodes_blog_app.models import User, Post, check_password_hash
@@ -17,7 +17,8 @@ from flask_login import login_required,login_user, current_user, logout_user
 # Default Home Route
 @app.route('/')
 def home():
-    return render_template('home.html')
+    posts = Post.query.all()
+    return render_template('home.html',user_posts = posts )
 
 @app.route('/test')
 def testRoute():
@@ -69,3 +70,24 @@ def login():
             # TODO Redirect User to login route
             return redirect(url_for('login'))
     return render_template('login.html', login_form = form)
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+
+# Creation of posts route
+@app.route('/posts', methods = ['GET', 'POST'])
+def posts():
+    form = PostForm()
+    if request.method == 'POST' and form.validate():
+        title = form.title.data
+        content = form.content.data
+        user_id = current_user.id
+        post = Post(title,content,user_id)
+
+        db.session.add(post)
+
+        db.session.commit()
+        return redirect(url_for('home'))
+    return render_template('posts.html', post_form = form)
