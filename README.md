@@ -9,6 +9,8 @@
         - test.html
         - base.html
         - login.html
+        - post_detail.html
+        - post_update.html
         **New Files inside of templates**
         - register.html
     - static
@@ -26,6 +28,6 @@
 ## Files changed today:
 - routes.py(login route)
 - __init__.py
-- .env(omitted from github for security)
-- forms.py(login form)
 - nav.html
+- post_detail.html
+- post_update.html
